@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+
+<head>
+
+  <meta charset="utf-8">
+  <!-- <base href="/"> -->
+
+  <title>БулЛавка</title>
+  <meta name="description" content="">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Template Basic Images Start -->
+    <meta property="og:image" content="{% static 'img/favicon/newfavi.ico' %}">
+    <meta property="vk:image" content="{% static 'img/obloj.png' %}">
+	<link rel="icon" href="{% static 'img/favicon/newfavi.ico' %}">
+
+
+  <!-- Custom Browsers Color Start -->
+  <meta name="theme-color" content="#000">
+ <!-- Custom Browsers Color End -->
+ <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&amp;subset=cyrillic" rel="stylesheet">
+ <link rel="stylesheet" type="text/css" href="{% static 'css/slick.css' %}"/>
+<!-- // Add the new slick-theme.css if you want the default styling -->
+ <link rel="stylesheet" type="text/css" href="{% static 'css/slick-theme.css' %}"/>
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+		rel="stylesheet">
+</head>
+
+<body>
+
+
+  <!-- Nav-bar  -->
+<header class="job">
+
+  <div  class="container">
+
+
+
+     <div class="row">
+
+        <div class="col-2 logo">
+           <img src="/media/{{ logo.PHOTO }}" alt="logo">
+        </div>
+
+        <div class="col-8 ">
+           <div class="nav">
+					<a href="{% url 'main_url' %}" class="one nav__item active">Главная</a>
+          <a href="{% url 'news_url' %}" class="two nav__item">Новости</a>
+					<a href="{% url 'gallery_url' %}" class="two nav__item">О нас</a>
+					<a href="{% url 'jobs_url' %}" class=" act three nav__item">Наши вакансии</a>
+					<a href="{% url 'partners_url' %}" class=" four nav__item">Наши партнеры</a>
+					<a href="{% url 'cooperation_url' %}" class="nav__item">Сотрудничество</a>
+					<a href="{% url 'contacts_url' %}" class="nav__item">Контакты</a>
+           </div>
+
+        </div>
+        <div class="col-2 ">
+           <div class="social">
+              <a target="_blank" href="https://www.instagram.com/bullavka_moscow/"><img src="{% static 'img/instagram.svg' %}" alt="instagram"></a>
+              <a target="_blank" href="https://vk.com/bullavka_moscow"><img src="{% static 'img/vk.svg' %}" alt="vk"></a>
+              <a target="_blank" href="https://www.facebook.com/bullavkamoscow/"><img src="{% static 'img/facebook.svg' %}" alt="facebook"></a>
+
+           </div>
+        </div>
+
+     </div>
+
+  </div>
+ <div class="containter ">
+   <div class="row">
+     <div class="col-12">
+       <h2 class="h2">Наши вакансии</h2>
+     </div>
+   </div>
+ </div>
+</header>
+{% include 'mobile_nav.html' %}
+
+<div class="overlay"></div>
+<main class='blank-main'>
+ <div class="container">
+   <div class="row backing">
+     <div class="col-12 bac">
+         <a class='back'href="{% url 'jobs_url' %}">Назад к вакансиям</a>
+     </div>
+   </div>
+   <div class="row">
+     <div class="col-12">
+       <h2 class="mini-h2">
+         АНКЕТА
+       </h2>
+
+     </div>
+   </div>
+
+     <div class="row">
+         <div class="col-sm-12  second">
+
+             <!--<div class="custom-select">-->
+
+ <form method="post" id="jobForm" action="{% url 'form_url' %}" data-jobnames-url="{% url 'ajax_load_jobnames' %}">
+   {% csrf_token %}
+
+   {{ form.coffeehouse }}
+   {{ form.jobname }}
+
+
+
+
+
+ <script>
+   $("#id_coffeehouse").change(function () {
+     var url = $("#jobForm").attr("data-jobnames-url");
+     var coffeehouseId = $(this).val();
+
+     $.ajax({
+       url: url,
+       data: {
+         'coffeehouse': coffeehouseId
+       },
+       success: function (data) {
+         $("#id_jobname").html(data);
+       }
+     });
+
+   });
+ </script>
+	<script>
+
+    $('.burger, .overlay').click(function(){
+      $('.burger').toggleClass('clicked');
+      $('.overlay').toggleClass('show');
+      $('nav').toggleClass('show');
+      $('body').toggleClass('overflow');
+    });</script>
+
+
+
+     <!---->
+   <div class="row">
+     <div class="col-12">
+
+
+         </div>
+       </div>
+
+       <div class="row">
+         <div class="col-sm-12 col-md-6">
+             <div class="input-field input-field--inline">
+                 <input type="text" name="Fname" id="Fname" placeholder="Имя" required="" >
+               </div>
+         </div>
+         <div class="col-sm-12 col-md-6">
+             <div class="input-field input-field--inline">
+                 <input type="text" name="Sname" id="Sname" placeholder="Фамилия" required="" >
+               </div>
+         </div>
+       </div>
+       <div class="row">
+           <div class="col-sm-12 col-md-6">
+               <div class="input-field input-field--inline">
+                   <input type="text" name="date" id="dateBirthday" placeholder="Дата рождения" required="" >
+                 </div>
+           </div>
+           <div class="col-sm-12 col-md-6">
+               <div class="input-field input-field--inline">
+                   <input type="text" name="citizenship" id="citizenship" placeholder="Гражданство" required="" >
+                 </div>
+           </div>
+         </div>
+
+         <div class="row">
+             <div class="col-sm-12 col-md-6">
+                 <div class="input-field input-field--inline">
+                     <input type="tel" name="tel" id="tel" placeholder="Номер телефона" required="" >
+                   </div>
+             </div>
+             <div class="col-sm-12 col-md-6">
+                 <div class="input-field input-field--inline">
+                     <input type="email" name="email" id="email" placeholder="Email " required="" autocomplete="mail">
+                   </div>
+             </div>
+           </div>
+             <div class="row">
+                 <div class="col-sm-12 col-md-6 second">
+
+
+
+                     </div>
+                   </div>
+
+                   <div class="row">
+                     <div class="col-12">
+                         <div class="input-field">
+                             <input type="checkbox" name="agree" id="agree" required value="agree">
+                             <label for="agree">Я согласен с тем, что мои персональные данные будут использоваться компанией</label>
+                           </div>
+                     </div>
+                   </div>
+
+                   <div class="row">
+                     <div class="col-12 send">
+                         <button class="btn btn-contact ">ОТПРАВИТЬ АНКЕТУ</button>
+                     </div>
+                   </div>
+
+
+     </form>
+     </div>
+</main>
+
+{% include 'footer.html' %}
+
+</main>
+
+
+
+<script>
+    "use strict";
+
+    $(document).ready(function domReady() {
+        $(".js-select2").select2({
+                placeholder: "Выберите кофейню",
+                "language": "ru-RU",
+                theme: "material",
+                language: {
+                    noResults: function (params) {
+                      return "Для просмотра вакансий — выберите кофейню";
+                    }
+                }
+        });
+
+        $(".select2-selection__arrow")
+                .addClass("material-icons")
+                .html("arrow_drop_down");
+    });
+
+</script>
+<script>
+    "use strict";
+
+    $(document).ready(function domReady() {
+        $(".js-select3").select2({
+                placeholder: "Выберите вакансию",
+                "language": "ru-RU",
+                theme: "material",
+                language: {
+                    noResults: function (params) {
+                      return "Для просмотра вакансий — выберите кофейню";
+                    }
+                }
+        });
+
+        $(".select2-selection__arrow")
+                .addClass("material-icons")
+                .html("arrow_drop_down");
+    });
+
+</script>
+</body>
+</html>

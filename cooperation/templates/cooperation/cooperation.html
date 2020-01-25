@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+	<!-- <base href="/"> -->
+
+	<title>БулЛавка</title>
+	<meta name="description" content="">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Template Basic Images Start -->
+    <meta property="og:image" content="{% static 'img/favicon/newfavi.ico' %}">
+    <meta property="vk:image" content="{% static 'img/obloj.png' %}">
+	<link rel="icon" href="{% static 'img/favicon/newfavi.ico' %}">
+	<!-- Template Basic Images End -->
+
+	<!-- Custom Browsers Color Start -->
+	<meta name="theme-color" content="#000">
+  <!-- Custom Browsers Color End -->
+  <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&amp;subset=cyrillic" rel="stylesheet">
+<!-- // Add the new slick-theme.css if you want the default styling -->
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+
+
+</head>
+
+<body>
+
+
+	<!-- Nav-bar  -->
+<header class="cooperation">
+
+	<div  class="container">
+
+
+
+		<div class="row">
+
+			<div class="col-2 logo ">
+				<img src="/media/{{ logo.PHOTO }}" alt="logo">
+			</div>
+
+			<div class="col-8 ">
+				<div class="nav">
+					<a href="{% url 'main_url' %}" class="one nav__item active">Главная</a>
+          <a href="{% url 'news_url' %}" class="two nav__item">Новости</a>
+					<a href="{% url 'gallery_url' %}" class="two nav__item">О нас</a>
+					<a href="{% url 'jobs_url' %}" class=" three nav__item">Наши вакансии</a>
+					<a href="{% url 'partners_url' %}" class=" four nav__item">Наши партнеры</a>
+					<a href="{% url 'cooperation_url' %}" class="act nav__item">Сотрудничество</a>
+					<a href="{% url 'contacts_url' %}" class="nav__item">Контакты</a>
+				</div>
+
+			</div>
+			<div class="col-2 ">
+				<div class="social">
+          <a target="_blank" href="https://www.instagram.com/bullavka_moscow/"><img src="{% static 'img/instagram.svg' %}" alt="instagram"></a>
+					<a target="_blank" href="https://vk.com/bullavka_moscow"><img src="{% static 'img/vk.svg' %}" alt="vk"></a>
+					<a target="_blank" href="https://www.facebook.com/bullavkamoscow/"><img src="{% static 'img/facebook.svg' %}" alt="facebook"></a>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+  <div class="containter ">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="h2">Сотрудничество</h2>
+      </div>
+    </div>
+  </div>
+</header>
+
+{% include 'mobile_nav.html' %}
+
+<div class="overlay"></div>
+
+ <main class='cooperation-main'>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <p class="cooperation__text cooperation__first">
+          Мы всегда открыты к диалогу, готовы расти и развиваться.
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <p class="cooperation__text tex">
+          Предложения о сотрудничестве просим направлять на нашу электронную почту: <br>
+          <strong>bullavkamoscow@gmail.com </strong>
+        </p>
+
+      </div>
+    </div>
+
+
+        <!-- <div class="nav__transform">
+          <div class="nav__bird">
+            <img src="img/bird.svg" alt="bird">
+          </div>
+         <div class="nav__bg"></div>
+      -->
+
+     <div id="container">
+      <img class='bg-cloud' src="{% static 'img/cloud.svg' %}" />
+      <div class="slide one">
+        <img src="{% static 'img/bird.svg' %}" alt="bird">
+      </div>
+    </div>
+
+  </div>
+
+
+</main> 
+
+
+
+
+
+
+{% include 'footer.html' %}
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js'></script>
+  <script src="{% static 'js/scripts.min.js' %}"></script>
+
+</body>
+</html>

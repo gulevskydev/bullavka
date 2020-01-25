@@ -1,0 +1,230 @@
+{% load static %}
+ 
+ 
+<head>
+ 
+    <meta charset="utf-8">
+    <!-- <base href="/"> -->
+ 
+    <title>БулЛавка</title>
+    <meta name="description" content="">
+ 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ 
+    <!-- Template Basic Images Start -->
+    <meta property="og:image" content="{% static 'img/favicon/newfavi.ico' %}">
+    <meta property="vk:image" content="{% static 'img/obloj.png' %}">
+    <link rel="icon" href="{% static 'img/favicon/newfavi.ico' %}">
+    <!-- Template Basic Images End -->
+ 
+    <!-- Custom Browsers Color Start -->
+    <meta name="theme-color" content="#000">
+    <!-- Custom Browsers Color End -->
+     <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <!-- <script src="ac_quicktime.js" type="text/javascript"></script> -->
+</head>
+<!-- <body data-vide-bg="https://thenewcode.com/assets/videos/fashion.mp4" data-vide-options='resizing: true ,position: "50% 50%"' class='main overley' style="z-index: 1; background: url(../img/opacity.png) 50% 50%;
+height: 100%;
+background-size: cover;
+;
+"> -->
+ 
+ 
+    <body class="main-index">
+       
+<div id="OVERLAY"></div>
+ 
+{% if mobile %}
+<!--<iframe src="{{ link }}" allowfullscreen allowtransparency allow="autoplay" muted="muted" style="position: fixed; left: -10%; top: -10%; overflow: hidden; z-index: -999; height: 125vh; width: 197vh; visibility: visible; background-color: green;"></iframe>-->
+<iframe id="iframe" src="{{ link }}" allowfullscreen allowtransparency allow="autoplay" style="position: fixed;
+top: 52%;
+left: 50%;
+min-width: 192vh;
+ 
+min-height: 148vh;
+width: auto;
+height: auto;
+z-index: 0;
+transform: translate(-50%, -50%); "
+></iframe>
+ 
+ 
+ 
+ 
+ 
+ 
+{% elif safari %}
+ 
+<iframe src="{{ link }}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen frameborder="0" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen frameborder="0" style="position: fixed; left: -10%; top: -10%; overflow: hidden; z-index: -999; height: 120%;
+ 
+width: 121%; visibility: visible; background-color: black;"
+ 
+id="okplayer"></iframe>
+ 
+ 
+ 
+{% elif video %}
+<video style="z-index: -1;position:absolute;position: fixed;
+top: 50%;
+left: 50%;
+min-width: 100%;
+min-height: 100%;
+width: auto;
+height: auto;
+z-index: -100;
+transform: translate(-50%, -50%); " autoplay loop muted playsinline webkit-playinginline>
+    <source src="media/{{ VP.VIDEO }}" type="video/mp4">
+</video>
+{% elif photo %}
+ 
+ 
+<body class='main img-bg' style = " background: url(/media/{{ VP.PHOTO }}) no-repeat; background-size: cover;">
+ 
+{% else %}
+ 
+<body class='main img-bg' style = " background: url(/static/images/4_CzfhbGpgw.jpg) no-repeat; background-size: cover;">
+ 
+ 
+{% endif %}
+ 
+ 
+             <header>
+ 
+                    <div  class="container">
+               
+               
+               
+                        <div class="row">
+               
+                            <div class="col-2 logo ">
+ 
+                                <img src="media/{{ logo.PHOTO }}" alt="logo">
+                            </div>
+               
+                            <div class="col-8 ">
+                                <div class="nav">
+                                    <a href="{% url 'main_url' %}" class="act one nav__item active">Главная</a>
+                                    <a href="{% url 'news_url' %}" class="two nav__item">Новости</a>
+                                    <a href="{% url 'gallery_url' %}" class="two nav__item">О нас</a>
+                                    <a href="{% url 'jobs_url' %}" class=" three nav__item">Наши вакансии</a>
+                                    <a href="{% url 'partners_url' %}" class=" four nav__item">Наши партнеры</a>
+                                    <a href="{% url 'cooperation_url' %}" class="nav__item">Сотрудничество</a>
+                                    <a href="{% url 'contacts_url' %}" class="nav__item">Контакты</a>
+                                </div>
+               
+                            </div>
+                            <div class="col-2 ">
+                                <div class="social">
+                                    <a target="_blank" href="https://www.instagram.com/bullavka_moscow/"><img src="{% static 'img/instagram.svg' %}" alt="instagram"></a>
+                                    <a target="_blank" href="https://vk.com/bullavka_moscow"><img src="{% static 'img/vk.svg' %}" alt="vk"></a>
+                                    <a target="_blank" href="https://www.facebook.com/bullavkamoscow/"><img src="{% static 'img/facebook.svg' %}" alt="facebook"></a>
+                                </div>
+                            </div>
+               
+                        </div>
+               
+                    </div>
+               
+               
+                </header>
+                <div class="col-12 mini-box">
+ 
+                        <div class="box">
+                    Для воспроизведения видео — нажмите на экран
+                    </div>
+                    </div>
+                {% include 'mobile_nav.html' %}
+               
+                <div class="overlay"></div>
+                <script>
+ 
+                        $('.burger, .overlay').click(function(){
+                            $('.burger').toggleClass('clicked');
+                            $('.overlay').toggleClass('show');
+                            $('nav').toggleClass('show');
+                            $('body').toggleClass('overflow');
+                        });
+                </script>
+<script>
+ 
+ 
+let autoPlayAllowed = true;
+let v = document.createElement('video');
+v.src = "https://player.vimeo.com/video/308543965?api=1&title=0&byline=0&portrait=0&playbar=0&loop=1&player_id=okplayer&setVolume=0&?muted=1&autoplay=1"; // we need this
+ 
+const promise = v.play();
+ 
+if (promise instanceof Promise) {
+  promise.catch(function(error) {
+    // Check if it is the right error
+    if (error.name === 'NotAllowedError') {
+      autoPlayAllowed = false;
+    } else {
+      // Don't throw the error so that we get to the then
+      // or throw it but set the autoPlayAllowed to true in here
+    }
+  }).then(function() {
+    if (autoPlayAllowed) {
+      // Autoplay is allowed - continue with initialization
+      var par = document.getElementById('OVERLAY');
+      par.classList.add('overley');
+      var player = new Plyr('#player', {
+    debug: true,
+    volume: 0,
+    autoplay: 1,
+    muted: 1,
+    loop: 1,
+});
+    } else {
+      // Autoplay is not allowed - wait for the user to trigger the play button manually
+ 
+ 
+ 
+    focus();
+    var listener = addEventListener('blur', function() {
+        if(document.activeElement == document.getElementById('iframe')) {
+            var box = document.querySelector(".box");
+            box.classList.add("animated", "zoomOut");
+    }
+    removeEventListener(listener);
+});
+ 
+ 
+ 
+ 
+ 
+        var player = new Plyr('#player', {
+    debug: 1,
+    volume: 0,
+    autoplay: 0,
+    muted: 1,
+    loop: 1,
+});
+ 
+    }
+  });
+ 
+} else {
+  // Unknown if allowed
+  // Note: you could fallback to simple event listeners in this case
+  alert('autoplay unknown')
+}
+</script>
+      <style>
+            .mini-box{
+                text-align: center;
+            }
+ 
+ 
+.js-is-hidden {
+    display: none;
+}
+      </style>
+</body>

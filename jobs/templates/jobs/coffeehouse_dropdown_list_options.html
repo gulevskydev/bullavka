@@ -1,0 +1,4 @@
+<option value="">Выберите вакансию</option>
+{% for x in jobnames %}
+<option value="{{ x.pk }}">{{ x.job_name }}</option>
+{% endfor %}

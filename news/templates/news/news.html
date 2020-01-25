@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+	<!-- <base href="/"> -->
+
+	<title>БулЛавка</title>
+	<meta name="description" content="">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Template Basic Images Start -->
+    <meta property="og:image" content="{% static 'img/favicon/newfavi.ico' %}">
+    <meta property="vk:image" content="{% static 'img/obloj.png' %}">
+	<link rel="icon" href="{% static 'img/favicon/newfavi.ico' %}">
+
+	<!-- Template Basic Images End -->
+
+	<!-- Custom Browsers Color Start -->
+	<meta name="theme-color" content="#000">
+  <!-- Custom Browsers Color End -->
+  <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&amp;subset=cyrillic" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/slick.css' %}"/>
+<!-- // Add the new slick-theme.css if you want the default styling -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/slick-theme.css' %}"/>
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.js"></script>
+
+
+</head>
+
+<body>
+  <div class="wrapper">
+    <header class="news-header">
+
+        <div  class="container">
+        
+        
+        
+            <div class="row">
+        
+              <div class="col-2 logo ">
+                <img src="/media/{{ logo.PHOTO }}" alt="logo">
+              </div>
+        
+              <div class="col-8 ">
+                <div class="nav">
+					<a href="{% url 'main_url' %}" class="one nav__item active">Главная</a>
+          <a href="{% url 'news_url' %}" class="act two nav__item">Новости</a>
+					<a href="{% url 'gallery_url' %}" class="two nav__item">О нас</a>
+					<a href="{% url 'jobs_url' %}" class=" three nav__item">Наши вакансии</a>
+					<a href="{% url 'partners_url' %}" class=" four nav__item">Наши партнеры</a>
+					<a href="{% url 'cooperation_url' %}" class="nav__item">Сотрудничество</a>
+					<a href="{% url 'contacts_url' %}" class="nav__item">Контакты</a>
+                </div>
+
+              </div>
+              <div class="col-2 ">
+                <div class="social">
+                  <a target="_blank" href="https://www.instagram.com/bullavka_moscow/"><img src="{% static 'img/instagram.svg' %}" alt="instagram"></a>
+                  <a target="_blank" href="https://vk.com/bullavka_moscow"><img src="{% static 'img/vk.svg' %}" alt="vk"></a>
+                  <a target="_blank" href="https://www.facebook.com/bullavkamoscow/"><img src="{% static 'img/facebook.svg' %}" alt="facebook"></a>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <div class="containter ">
+            <div class="row">
+              <div class="col-12">
+                <h2 class="h2">Новости</h2>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        {% include 'mobile_nav.html' %}
+
+
+        </nav>
+
+        <div class="overlay"></div>
+        <main class="news">
+          <div class="container">
+
+            <div class="row">
+              <div class="col-4 offset-8">
+
+                <form class="news-form"action="{% url 'news_url' %}">
+                <input class ="news__search" type="search"  name="search" aria-label="Search">
+                    </form>
+              </div>
+            </div>
+            <div class="row tegs">
+                <div class="main-teg">Теги:</div>
+                {% for tag in tags %}
+                <div class="teg">
+                    <a class="miniteg" href="{% url 'tag_detail_url' tag.pk %}"> {{ tag.title}}
+                  </a>
+                </div>
+                {% endfor %}
+
+
+
+
+                  </div>
+    <script type="text/javascript">
+      window.CSRF_TOKEN = "{{ csrf_token }}";
+    </script>
+
+              <div class="row row-info" id="posts">
+                  {% include 'news/posts.html' %}
+              </div>
+
+
+{% if not search %}
+      <div class="row info-but ">
+        <div class="col-12 ">
+<div class="btn btn-contact " id="lazyLoadLink" data-page="1">Больше новостей</div>
+
+      </div>
+                        </div>
+                      <script type="text/javascript">
+    (function($) {
+  $('#lazyLoadLink').on('click', function() {
+    var link = $(this);
+    var page = link.data('page');
+
+    $.ajax({
+      type: 'post',
+      url: '/news/lazy_load_posts/',
+      data: {
+        'page': page,
+        'csrfmiddlewaretoken': window.CSRF_TOKEN // from index.html
+      },
+      success: function(data) {
+        // if there are still more pages to load,
+        // add 1 to the "Load More Posts" link's page data attribute
+        // else hide the link
+        if (data.has_next) {
+            link.data('page', page+1);
+        } else {
+          link.hide();
+        }
+        // append html to the posts div
+        $('#posts').append(data.posts_html);
+      },
+      error: function(xhr, status, error) {
+        // shit happens friends!
+      }
+    });
+  });
+}(jQuery));
+</script>
+{% endif %}
+        </main>
+      </div>
+        {% include 'footer.html' %}
+
+        
+          <script src="{% static 'js/scripts.min.js' %}"></script>
+
+        <script>$(".hover").mouseleave(
+            function () {
+              $(this).removeClass("hover");
+            }
+          );</script>
+         
+        </body>
+        </html>
+        
+      

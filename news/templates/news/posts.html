@@ -1,0 +1,13 @@
+{% for post in posts %}
+<div class="col-md-4 inf">
+    <figure class="snip1361">
+    <img src="/media/{{ post.main_image }}" alt="sample45" />
+    <figcaption>
+
+      <h3> {{ post.title|truncatechars:22 }}</h3>
+      <p>{{ post.body|truncatewords:8 }} </p>
+    </figcaption>
+    <a href="{% url 'post_detail_url' post.pk %}"></a>
+  </figure>
+</div>
+{% endfor %}

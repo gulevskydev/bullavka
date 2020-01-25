@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% load static %}
+
+<head>
+
+	<meta charset="utf-8">
+	<!-- <base href="/"> -->
+
+	<title>БулЛавка</title>
+	<meta name="description" content="">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Template Basic Images Start -->
+    <meta property="og:image" content="{% static 'img/favicon/newfavi.ico' %}">
+    <meta property="vk:image" content="{% static 'img/obloj.png' %}">
+	<link rel="icon" href="{% static 'img/favicon/newfavi.ico' %}">
+	<!-- Template Basic Images End -->
+
+	<!-- Custom Browsers Color Start -->
+	<meta name="theme-color" content="#000">
+  <!-- Custom Browsers Color End -->
+  <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&amp;subset=cyrillic" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/slick.css' %}"/>
+<!-- // Add the new slick-theme.css if you want the default styling -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/slick-theme.css' %}"/>
+  
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+
+</head>
+
+<body>
+	<!-- Nav-bar  -->
+<header class="about_us">
+
+<div  class="container">
+
+
+
+		<div class="row">
+
+			<div class="col-2 logo ">
+				<img src="/media/{{ logo.PHOTO }}" alt="logo">
+			</div>
+
+			<div class="col-8 ">
+				<div class="nav">
+					<a href="{% url 'main_url' %}" class="one nav__item active">Главная</a>
+          <a href="{% url 'news_url' %}" class="two nav__item">Новости</a>
+					<a href="{% url 'gallery_url' %}" class="act two nav__item">О нас</a>
+					<a href="{% url 'jobs_url' %}" class=" three nav__item">Наши вакансии</a>
+					<a href="{% url 'partners_url' %}" class=" four nav__item">Наши партнеры</a>
+					<a href="{% url 'cooperation_url' %}" class="nav__item">Сотрудничество</a>
+					<a href="{% url 'contacts_url' %}" class="nav__item">Контакты</a>
+				</div>
+
+			</div>
+			<div class="col-2 ">
+				<div class="social">
+          <a target="_blank" href="https://www.instagram.com/bullavka_moscow/"><img src="{% static 'img/instagram.svg' %}" alt="instagram"></a>
+					<a target="_blank"  href="https://vk.com/bullavka_moscow"><img src="{% static 'img/vk.svg' %}" alt="vk"></a>
+					<a target="_blank"  href="https://www.facebook.com/bullavkamoscow/"><img src="{% static 'img/facebook.svg' %}" alt="facebook"></a>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+  <div class="containter">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="h2">О компании</h2>
+      </div>
+    </div>
+  </div>
+</header>
+{% include 'mobile_nav.html' %}
+
+<div class="overlay"></div>
+<main class=about-main>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+
+        <h3 class="h3">
+            КОФЕЙНЯ БУЛЛАВКА — НЕИЗМЕННО ВКУСНО, СОВРЕМЕННО, КАЧЕСТВЕННО
+        </h3>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+{% if content %}
+<section class="slide-description">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-xs-12 ">
+
+            {% if is_mobile %}
+            <div><img src="/media/{{ beverage.photo }}" width="100%" height="100%"></div>
+            {% else %}
+            <div class="rslides">
+                {% for x in beverages %}
+
+                      <div><img src="/media/{{ x.photo }}" /></div>
+
+                {% endfor %}
+             </div>
+
+
+            {% endif %}
+          </div>
+
+      <div class="col-md-6 col-xs-12">
+        <p class="text-description">
+            Сеть кофеен БулЛавка, вкусная история которых началась в 2016 году, вобрала в себя лучшие европейские традиции, лучшее воплощение привычного и стремление ко всему новому.
+            <br><br>
+            Наши ценности: <span class="fw-500">семья, качество, трудолюбие.</span> 
+            Атмосфера домашнего уюта, под легкую музыку джаза и аромата кофе, хрустящего круассана и вафельной трубочки не оставила равнодушным еще ни одного гостя.
+        </p>
+        {% if is_mobile %}
+          <div><img src="/media/{{ product.photo }}" width="100%" height="100%"></div>
+          {% else %}
+        <div class="rslides">
+            {% for x in products %}
+            <div><img src="/media/{{ x.photo }}" /></div>
+            {% endfor %}
+        </div>
+          {% endif %}
+
+        <p class="after-description">
+            Добро пожаловать в мир лучшего кофе, вкуснейших круассанов, волшебных кондитерских шедевров и ароматного хлеба.
+            Ждем Вас. Крепкая команда лучших друзей, <span class="fw-500">Кофейня БулЛавка!</span>
+        </p>
+      </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+            {% if is_mobile %}
+            <div><img src="/media/{{ interior.photo }}" width="100%" height="100%"></div>
+            {% else %}
+            <div class="rslides big-image">
+                {% for x in interiors %}
+                <div><img  src="/media/{{ x.photo }}" /></div>
+
+                {% endfor %}
+          <!-- <img class='big-image' src="img/about-big.png" alt="food"> -->
+        </div>
+            {% endif %}
+      </div>
+    </div>
+
+</section>
+{% else %}
+    <h1>Технические работы</h1>
+{% endif %}
+
+
+</main>
+
+
+    <!---->
+
+
+{% include 'footer.html' %}
+
+
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+  <script src="{% static 'js/scripts.min.js' %}"></script>
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/slick.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/parallax.js' %}"></script>
+
+
+</body>
+</html>

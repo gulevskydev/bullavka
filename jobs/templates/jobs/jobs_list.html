@@ -1,0 +1,128 @@
+ <div class="tab-frame">
+
+          {% for x in jobs %}
+
+            <input type="radio"  name="tab" id="tab{{ forloop.counter }}">
+            <label class='r{{ forloop.counter }} r' for="tab{{ forloop.counter }}">{{ x.jobname }}</label>
+
+            {% endfor %}
+
+
+       <!--ALL JOBS-->
+
+          {% for x in jobs %}
+        <div class="tab">
+          <h3 class="mini-header">{{ x.jobname }}</h3>
+        {% if x.salary %}
+          <p><strong>Заработная плата</strong></p>
+          <p class="mini-text">{{ x.salary }}</p>
+                {% endif %}
+
+            {% if x.workplace %}
+          <p><strong>Место работы</strong></p>
+          <p class="mini-text">{{ x.workplace }} </p>
+            {% endif %}
+
+            {% if x.timetable %}
+          <p><strong>График работы</strong></p>
+          <p class="mini-text">{{ x.timetable }}</p>
+            {% endif %}
+
+            {% if x.conditions %}
+          <p><strong>Условия</strong></p>
+          <p class="mini-text"> {{ x.conditions }}
+            {% endif %}
+
+            {% if x.responsibilities %}
+          <p><strong>Обязанности</strong></p>
+            {{ x.responsibilities }}
+            {% endif %}
+
+
+          <h5 class="h5">ТРЕБОВАНИЯ К КАНДИДАТУ*</h5>
+
+            {% if x.education %}
+          <p><strong> Образование</strong></p>
+          <p class="mini-text">{{ x.education }}</p>
+             {% endif %}
+
+           {% if x.experience %}
+          <p><strong> Опыт работы </strong></p>
+          <p class="mini-text">{{ x.experience }}</p>
+            {% endif %}
+
+             {% if x.requirements %}
+          <p><strong>Требования</strong></p>
+            {{ x.requirements }}
+            {% endif %}
+
+
+        </div>
+        {% endfor %}
+ </div>
+
+ <div class="iphone-check">
+
+{% for x in jobs %}
+<div class="textBoxAccordionEl ">
+	<div class="textBoxAccordionElTitle">{{ x.jobname }}</div>
+	<div class="textBoxAccordionElContent">
+			<div class="tab">
+                    {% if x.job_name %}
+					<h3 class="mini-header">{{ x.jobname }}</h3>
+                    {% endif %}
+
+                    {% if x.salary %}
+					<p><strong>Заработная плата</strong></p>
+					<p class="mini-text">{{ x.salary }}</p>
+                    {% endif %}
+
+                    {% if x.workplace %}
+					<p><strong>Место работы</strong></p>
+					<p class="mini-text">{{ x.workplace }}</p>
+                    {% endif %}
+
+                    {% if x.timetable %}
+					<p><strong>График работы</strong></p>
+					<p class="mini-text">{{ x.timetable }}</p>
+                    {% endif %}
+
+                    {% if x.conditions %}
+					<p><strong>Условия</strong></p>
+					<p class="mini-text">{{ x.conditions }}</p>
+                    {% endif %}
+
+                    {% if x.responsibilities %}
+					<p><strong>Обязанности</strong></p>
+                    {{ x.responsibilities }}
+                    {% endif %}
+
+					<h5 class="h5">ТРЕБОВАНИЯ К КАНДИДАТУ*</h5>
+
+                    {% if x.education %}
+					<p><strong> Образование</strong></p>
+					<p class="mini-text">{{ x.education }}</p>
+                    {% endif %}
+
+                    {% if x.experience %}
+					<p><strong> Опыт работы </strong></p>
+					<p class="mini-text">{{ x.experience }}</p>
+                    {% endif %}
+
+                    {% if x.requirements %}
+					<p><strong>Требования</strong></p>
+					{{ x.requirements }}
+                    {% endif %}
+
+
+				</div>                 </div>
+</div>
+{% endfor %}
+</div>
+<script>
+$(document).ready(function() {
+$(".textBoxAccordionEl:not(.fixed) .textBoxAccordionElTitle").click(function() {
+$(this).closest(".textBoxAccordionEl").toggleClass("open")
+});
+});
+    </script>
